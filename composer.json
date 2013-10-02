@@ -1,0 +1,14 @@
+{
+    "name": "assisrafael/giix",
+    "type": "yii-extension",
+    "description": "giix is Gii Extended, a code generator for Yii PHP framework – with extras",
+    "authors": [
+        {
+            "name": "Rodrigo Coelho",
+            "email": "rodrigo.coelho@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii": ">=1.1.8"
+    }
+}

@@ -9,8 +9,9 @@
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
 
-<?php 
-	$authpath = 'ext.giix.generators.giixCrud.templates.default.auth.';
+<?php
+	Yii::setPathOfAlias("templates-default", dirname(__FILE__));
+	$authpath = 'templates-default.auth.'; 
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);
 ?>
 

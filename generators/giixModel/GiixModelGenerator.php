@@ -15,9 +15,12 @@
  * @author Rodrigo Coelho <rodrigo@giix.org>
  * @package giix.generators.giixModel
  */
+
+Yii::setPathOfAlias('giixModel', dirname(__FILE__));
+
 class GiixModelGenerator extends CCodeGenerator {
 
-	public $codeModel = 'ext.giix.generators.giixModel.GiixModelCode';
+	public $codeModel = 'giixModel.GiixModelCode';
 
 	/**
 	 * Returns the table names in an array.
