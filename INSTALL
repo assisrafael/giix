@@ -14,7 +14,7 @@ Installing
 1) Extract the directory "giix" from the
 downloaded archive into your application's protected/extensions directory.
 
-2) Configure an alias for the gii path in your application, like:
+2) Configure an alias for the giix path in your application, like:
 'aliases' => array(
 	'giix' => realpath(__DIR__ . '/../extensions/giix'), // change this if necessary
 ),
@@ -37,13 +37,11 @@ when needed, like:
 ),
 
 5) Register the giix messages directory, like the example below.
-Note: This feature is only available to Yii 1.1.13+ revision 3364). You will need to patch your Yii instalation.
-See <http://code.google.com/p/yii/issues/detail?id=2624> for details and the patch.
+Note: This feature is only available to Yii 1.1.13+. See <https://github.com/yiisoft/yii/issues/117> for details and the patch.
 'components' => array(
 	...
 	'messages' => array (
-		// Pending on core: http://code.google.com/p/yii/issues/detail?id=2624
-		'extensionBasePaths' => array(
+		'extensionPaths' => array(
 			'giix' => 'giix.messages', // giix messages directory.
 		),
 	),
