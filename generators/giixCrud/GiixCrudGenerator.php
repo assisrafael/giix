@@ -16,11 +16,9 @@
  * @package giix.generators.giixCrud
  */
 
-Yii::setPathOfAlias("giixCrud", dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'giixCrud');
-
 class GiixCrudGenerator extends CCodeGenerator {
 
-	public $codeModel = 'giixCrud.GiixCrudCode';
+	public $codeModel = 'giix.generators.giixCrud.GiixCrudCode';
 
 	/**
 	 * Returns the model names in an array.

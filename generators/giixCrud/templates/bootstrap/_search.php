@@ -6,7 +6,7 @@
 ?>
 <div class="wide form">
 
-<?php echo "<?php \$form = \$this->beginWidget('GxActiveForm', array(
+<?php echo "<?php \$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'action' => Yii::app()->createUrl(\$this->route),
 	'method' => 'get',
 )); ?>\n"; ?>
@@ -17,15 +17,12 @@
 	if (strpos($field, 'password') !== false)
 		continue;
 ?>
-	<div class="row">
-		<?php echo "<?php echo \$form->label(\$model, '{$column->name}'); ?>\n"; ?>
-		<?php echo "<?php " . $this->generateSearchField($this->modelClass, $column)."; ?>\n"; ?>
-	</div>
+	<?php echo "<?php echo " . $this->generateActiveControlGroup($this->modelClass, $column) . "; ?>\n"; ?>
 
 <?php endforeach; ?>
-	<div class="row buttons">
-		<?php echo "<?php echo GxHtml::submitButton(Yii::t('app', 'Search')); ?>\n"; ?>
-	</div>
+    <div class="form-actions">
+        <?php echo "<?php echo TbHtml::submitButton(Yii::t('app', 'Search'),  array('color' => TbHtml::BUTTON_COLOR_PRIMARY,));?>\n" ?>
+    </div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 

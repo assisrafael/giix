@@ -14,32 +14,37 @@ Installing
 1) Extract the directory "giix" from the
 downloaded archive into your application's protected/extensions directory.
 
-2) Configure the gii generator path in your application, like:
+2) Configure an alias for the gii path in your application, like:
+'aliases' => array(
+	'giix' => realpath(__DIR__ . '/../extensions/giix'), // change this if necessary
+),
+
+3) Configure the gii generator path in your application, like:
 'modules' => array(
 	'gii' => array(
 		'class' => 'system.gii.GiiModule',
 		'generatorPaths' => array(
-			'ext.giix.generators', // giix generators
+			'giix.generators', // giix generators
 		),
 	),
 ),
 
-3) Configure your application to automatically load the giix component classes
+4) Configure your application to automatically load the giix component classes
 when needed, like:
 'import' => array(
 	...
-	'ext.giix.components.*', // giix components
+	'giix.components.*', // giix components
 ),
 
-4) Register the giix messages directory, like the example below.
-Note: This feature is pending on Yii core (as of Yii 1.1.8 revision 3364). You will need to patch your Yii instalation.
+5) Register the giix messages directory, like the example below.
+Note: This feature is only available to Yii 1.1.13+ revision 3364). You will need to patch your Yii instalation.
 See <http://code.google.com/p/yii/issues/detail?id=2624> for details and the patch.
 'components' => array(
 	...
 	'messages' => array (
 		// Pending on core: http://code.google.com/p/yii/issues/detail?id=2624
 		'extensionBasePaths' => array(
-			'giix' => 'ext.giix.messages', // giix messages directory.
+			'giix' => 'giix.messages', // giix messages directory.
 		),
 	),
 ),

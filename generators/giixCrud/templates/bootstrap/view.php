@@ -24,6 +24,9 @@ $this->menu=array(
 <h1><?php echo '<?php'; ?> echo Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label()) . ' ' . GxHtml::encode(GxHtml::valueEx($model)); ?></h1>
 
 <?php echo '<?php'; ?> $this->widget('zii.widgets.CDetailView', array(
+	'htmlOptions' => array(
+        'class' => 'table table-striped table-condensed table-hover',
+    ),
 	'data' => $model,
 	'attributes' => array(
 <?php
