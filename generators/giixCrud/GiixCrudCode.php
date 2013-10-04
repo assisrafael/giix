@@ -71,15 +71,10 @@ class GiixCrudCode extends CrudCode {
 
 	public function getModule()
 	{
-		if(($pos=strpos($this->controller,'/'))!==false)
-		{
-			$id=substr($this->controller,0,$pos);
-			if(($module=Yii::app()->getModule($id))!==null)
-				return $module;
-		}else
-			if(!empty($this->moduleName))
-				return Yii::app()->getModule($this->moduleName);
-		return Yii::app();
+		if(!empty($this->moduleName))
+			return Yii::app()->getModule($this->moduleName);
+			
+		return parent::getModule();
 	}
 
 	public function getControllerID()
