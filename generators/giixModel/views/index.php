@@ -1,6 +1,22 @@
 <?php
 $class=get_class($model);
 Yii::app()->clientScript->registerScript('gii.model',"
+(function(){
+	var defaultModelPath = $('#{$class}_modelPath').val();
+	$('#{$class}_moduleName').change(function(){
+		var moduleName = $(this).val();
+		var modelPathElement = $('#{$class}_modelPath');
+		if(moduleName != '') {
+			var newModelPath = 'application.modules.'+moduleName+'.models';
+			modelPathElement.val(newModelPath);
+			modelPathElement.parent().find('div.value').html(newModelPath);
+		} else {
+			modelPathElement.val(defaultModelPath);
+			modelPathElement.parent().find('div.value').html(defaultModelPath);
+		}
+	});	
+})();
+
 $('#{$class}_modelClass').change(function(){
 	$(this).data('changed',$(this).val()!='');
 });
@@ -50,6 +66,21 @@ $('.form .row.model-class').toggle($('#{$class}_tableName').val().substring($('#
 		Leave this field empty if your database tables do not use common prefix.
 		</div>
 		<?php echo $form->error($model,'tablePrefix'); ?>
+	</div>
+	<div class="row sticky">
+		<?php echo $form->labelEx($model,'moduleName'); ?>
+		<?php echo $form->dropDownList($model,'moduleName', GxCoreHelper::getModuleList(), array(
+			'options' => array($model->moduleName => array('selected'=>true))
+		)); ?>
+		<div class="tooltip">
+		This refers to the module name that will contain the model.
+		Setting this property mainly affects where model classes are generated.
+		For example, a module name <code>Comments</code> will generate the model in the path 
+		<code>application.modules.comments.models</code>.
+		<br/>
+		Leave this field empty if your model does not belong to any module..
+		</div>
+		<?php echo $form->error($model,'moduleName'); ?>
 	</div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'tableName'); ?>

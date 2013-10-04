@@ -91,4 +91,17 @@ class GxCoreHelper {
 		return $result;
 	}
 
+	/**
+	 * Returns the module names in an array.
+	 * The array is used to build the autocomplete field.
+	 * @return array The names of all modules in the application.
+	 */
+	public static function getModuleList() {
+		$modules = array_diff(scandir(YiiBase::getPathOfAlias('application.modules')),array('..','.'));
+		$return = array('' => '[empty]');
+		foreach ($modules as $module) {
+			$return[$module] = 	ucwords(implode(preg_split('/(?=[A-Z])/', $module),' '))." [$module]";
+		}
+		return $return;
+	}
 }

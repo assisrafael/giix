@@ -32,5 +32,4 @@ class GiixModelGenerator extends CCodeGenerator {
 		$tables[] = '*';
 		return $tables;
 	}
-
 }

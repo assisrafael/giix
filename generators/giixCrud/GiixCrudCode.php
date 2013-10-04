@@ -33,6 +33,11 @@ class GiixCrudCode extends CrudCode {
 	public $baseControllerClass = 'GxController';
 
 	/**
+	 * @var string The module to which the class belongs.
+	 */
+	public $moduleName = '';
+
+	/**
 	 * Adds the new model attributes (class properties) to the rules.
 	 * #MethodTracker
 	 * This method overrides {@link CrudCode::rules}, from version 1.1.7 (r3135). Changes:
@@ -43,6 +48,9 @@ class GiixCrudCode extends CrudCode {
 	public function rules() {
 		return array_merge(parent::rules(), array(
 			array('authtype, enable_ajax_validation', 'required'),
+			array('moduleName', 'filter', 'filter'=>'trim'),
+			array('moduleName', 'match', 'pattern'=>'/^(\w+[\w\.]*|\*?|\w+\.\*)$/', 'message'=>'{attribute} should only contain word characters, dots, and an optional ending asterisk.'),
+			array('moduleName', 'sticky'),
 		));
 	}
 
@@ -59,6 +67,36 @@ class GiixCrudCode extends CrudCode {
 			'authtype' => 'Authentication type',
 			'enable_ajax_validation' => 'Enable ajax validation',
 		));
+	}
+
+	public function getModule()
+	{
+		if(($pos=strpos($this->controller,'/'))!==false)
+		{
+			$id=substr($this->controller,0,$pos);
+			if(($module=Yii::app()->getModule($id))!==null)
+				return $module;
+		}else
+			if(!empty($this->moduleName))
+				return Yii::app()->getModule($this->moduleName);
+		return Yii::app();
+	}
+
+	public function getControllerID()
+	{
+		if(!empty($this->model) && !empty($this->moduleName))
+			return $this->controller;
+
+		return parent::getControllerID();
+	}
+
+	public function validateModel($attribute,$params)
+	{
+		$actualModel = $this->model; 
+		if(!empty($this->model) && !empty($this->moduleName))
+			$this->model = 'application.modules.'.$this->moduleName.'.models.'.$this->model;
+		parent::validateModel($attribute,$params);
+		$this->model = $actualModel;
 	}
 
 	/**

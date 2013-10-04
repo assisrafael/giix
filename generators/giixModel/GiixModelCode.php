@@ -33,6 +33,20 @@ class GiixModelCode extends ModelCode {
 	public $baseModelClass;
 
 	/**
+	 * @var string The module to which the class belongs.
+	 */
+	public $moduleName = '';
+
+	public function rules()
+	{
+		return array_merge(parent::rules(), array(
+			array('moduleName', 'filter', 'filter'=>'trim'),
+			array('moduleName', 'match', 'pattern'=>'/^(\w+[\w\.]*|\*?|\w+\.\*)$/', 'message'=>'{attribute} should only contain word characters, dots, and an optional ending asterisk.'),
+			array('moduleName', 'sticky'),
+		));
+	}
+
+	/**
 	 * Prepares the code files to be generated.
 	 * #MethodTracker
 	 * This method is based on {@link ModelCode::prepare}, from version 1.1.7 (r3135). Changes:
@@ -373,5 +387,4 @@ class GiixModelCode extends ModelCode {
 <p style="margin: 2px 0; position: relative; text-align: right; top: -15px; color: #668866;">icons by <a href="http://www.famfamfam.com/lab/icons/silk/" style="color: #668866;">famfamfam.com</a></p>
 EOM;
 	}
-
 }

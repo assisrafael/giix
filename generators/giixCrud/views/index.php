@@ -21,6 +21,22 @@ $('#{$class}_model').bind('keyup change', function(){
 
 <?php $form=$this->beginWidget('CCodeForm', array('model'=>$model)); ?>
 
+	<div class="row sticky">
+		<?php echo $form->labelEx($model,'moduleName'); ?>
+		<?php echo $form->dropDownList($model,'moduleName', GxCoreHelper::getModuleList(), array(
+			'options' => array($model->moduleName => array('selected'=>true))
+		)); ?>
+		<div class="tooltip">
+		This refers to the module name that will contain the model.
+		Setting this property mainly affects where model classes are generated.
+		For example, a module name <code>Comments</code> will generate the model in the path 
+		<code>application.modules.comments.models</code>.
+		<br/>
+		Leave this field empty if your model does not belong to any module..
+		</div>
+		<?php echo $form->error($model,'moduleName'); ?>
+	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'model'); ?>
         <?php $form->widget('zii.widgets.jui.CJuiAutoComplete', array(
