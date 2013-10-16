@@ -25,14 +25,14 @@ $this->menu=array(
 
 <?php echo '<?php'; ?> $this->widget('zii.widgets.CDetailView', array(
 	'htmlOptions' => array(
-        'class' => 'table table-striped table-condensed table-hover',
-    ),
+		'class' => 'table table-striped table-condensed table-hover',
+	),
 	'data' => $model,
 	'attributes' => array(
-<?php
-foreach ($this->tableSchema->columns as $column)
-		echo $this->generateDetailViewAttribute($this->modelClass, $column) . ",\n";
-?>
+	<?php
+	foreach ($this->tableSchema->columns as $column)
+		echo "\t\t".$this->generateDetailViewAttribute($this->modelClass, $column) . ",\n";
+	?>
 	),
 )); ?>
 
