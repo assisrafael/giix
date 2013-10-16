@@ -3,5 +3,5 @@
 	{
 		return array(
 			array('auth.filters.AuthFilter'),
-		),
+		);
 	}

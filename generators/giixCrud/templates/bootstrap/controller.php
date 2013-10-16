@@ -12,6 +12,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	$authpath = 'giix.generators.giixCrud.templates.default.auth.';
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);
 ?>
+
 	public function actionView($id) {
 		$this->render('view', array(
 			'model' => $this->loadModel($id, '<?php echo $this->modelClass; ?>'),

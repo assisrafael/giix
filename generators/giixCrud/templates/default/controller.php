@@ -8,7 +8,6 @@
 <?php echo "<?php\n"; ?>
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
-
 <?php
 	$authpath = 'giix.generators.giixCrud.templates.default.auth.';
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);
