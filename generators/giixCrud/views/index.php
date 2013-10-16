@@ -85,6 +85,7 @@ $('#{$class}_model').bind('keyup change', function(){
 	<div class="row sticky">
 		<?php echo $form->labelEx($model, 'authtype'); ?>
 		<?php echo $form->dropDownList($model, 'authtype', array(
+					'auth_yiiauth' => 'Yii-auth access control (Crisu83/yii-auth)',
 					'auth_filter_default' => 'Yii access control(default ruleset)',
 					'auth_filter_strict' => 'Yii access control(more strict ruleset)',
 					'auth_yum' => 'Yii User Management access control',

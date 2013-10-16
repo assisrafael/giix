@@ -8,12 +8,10 @@
 <?php echo "<?php\n"; ?>
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
-
-<?php 
+<?php
 	$authpath = 'giix.generators.giixCrud.templates.default.auth.';
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);
 ?>
-
 	public function actionView($id) {
 		$this->render('view', array(
 			'model' => $this->loadModel($id, '<?php echo $this->modelClass; ?>'),
@@ -71,8 +69,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		}
 
 		$this->render('update', array(
-				'model' => $model,
-				));
+			'model' => $model,
+		));
 	}
 
 	public function actionDelete($id) {
