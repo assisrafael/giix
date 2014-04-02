@@ -97,9 +97,9 @@ class GxCoreHelper {
 	 * @return array The names of all modules in the application.
 	 */
 	public static function getModuleList() {
-		$modules = array_diff(scandir(YiiBase::getPathOfAlias('application.modules')),array('..','.'));
+        $modules = Yii::app()->getModules();
 		$return = array('' => '[empty]');
-		foreach ($modules as $module) {
+		foreach ($modules as $module=>$config) {
 			$return[$module] = 	ucwords(implode(preg_split('/(?=[A-Z])/', $module),' '))." [$module]";
 		}
 		return $return;
