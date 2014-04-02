@@ -88,8 +88,9 @@ class GiixCrudCode extends CrudCode {
 	public function validateModel($attribute,$params)
 	{
 		$actualModel = $this->model; 
-		if(!empty($this->model) && !empty($this->moduleName))
-			$this->model = 'application.modules.'.$this->moduleName.'.models.'.$this->model;
+		if(!empty($this->model) && !empty($this->moduleName)) {
+            $this->model = $this->moduleName. '.models.'.$this->model;
+        }
 		parent::validateModel($attribute,$params);
 		$this->model = $actualModel;
 	}
