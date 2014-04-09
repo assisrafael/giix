@@ -329,7 +329,7 @@ class GiixModelCode extends ModelCode {
 			return null;
 
 		$relationData = array();
-		if (preg_match("/^array\(([\w:]+?),\s?'(\w+)',\s?'([\w\s\(\){},]+?)'\)$/", $relation, $matches_base)) {
+		if (preg_match("/^array\(([\w:]+?),\s?'(\w+)',\s?'([\w\.\s\(\){},]+?)'\)$/", $relation, $matches_base)) {
 			$relationData[1] = $matches_base[2]; // the related active record class name
 
 			switch ($matches_base[1]) {
@@ -352,7 +352,7 @@ class GiixModelCode extends ModelCode {
 					$relationData[4] = $matches_base[3]; // the remote FK
 					break;
 				case 'self::MANY_MANY':
-					if (preg_match("/^((?:{{)?\w+(?:}})?)\((\w+),\s?(\w+)\)$/", $matches_base[3], $matches_manymany)) {
+					if (preg_match("/^((?:{{)?[\w\.]+(?:}})?)\((\w+),\s?(\w+)\)$/", $matches_base[3], $matches_manymany)) {
 						$relationData[0] = GxActiveRecord::MANY_MANY; // the relation type
 						$relationData[2] = $matches_manymany[1]; // the joining (pivot) table
 						$relationData[3] = $matches_manymany[2]; // the local FK
